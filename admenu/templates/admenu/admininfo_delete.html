@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Удаление бронирования{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Удаление администратора</h1>
+        <div class="form-admininfo">
+        <form method="Post">
+            {% csrf_token %}
+            <button class="btn btn-success" type="submit">Удалить администратора</button>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Удаление пользователя{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Удаление пользователя</h1>
+        <div class="form-users">
+        <form method="Post">
+            {% csrf_token %}
+
+            <button class="btn btn-success" type="submit">Удалить пользователя</button>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

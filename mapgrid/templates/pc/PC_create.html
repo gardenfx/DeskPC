@@ -1,0 +1,31 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма добавления компьютера{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Форма добавления компьютера</h1>
+        <div class="form-PC">
+            <style>
+                input[type='number'] {
+                    -moz-appearance: textfield;
+                }
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+            </style>
+            <form method="Post">
+                {% csrf_token %}
+                {{ form.Number }} <br>
+                Статус{{ form.Status }}<br>
+                Стоимость{{ form.Stoim }}<br>
+                <span>{{ error }}</span>
+                <button class="btn btn-success" type="submit">Добавить компьютер</button>
+                <br><br>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

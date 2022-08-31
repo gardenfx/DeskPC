@@ -1,0 +1,52 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Логи{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Логи операций</h1>
+        {% if knig_uchet %}
+        <form method="get" style="text-align: right; padding-right: 80px; padding-bottom: 20px" action="{% url 'knig_uchet_home' %}">
+            <input type="text" style="border-radius: 6px; border: 1px solid gray; text-align: left;" name="search_knig" placeholder="Номер чека">
+            <input type="submit" style="background: #4d963a; color: #f1f1f1; border-radius: 6px; border: 1px solid gray; height: 30px;" value="Поиск">
+        </form>
+            {% csrf_token %}
+            <div class="table_knig">
+        <table style='border: 0.1px solid black; box-shadow: 0px 0px 20px 5px rgba(2,2,2,0.2); margin: auto; width: 95%; height: 120%; font-size: 85%'>
+            <tr><th>ID книги</th>
+                <th>Номер чека</th>
+                <th>Операция</th>
+                <th>Общая стоимость</th>
+                <th>Дата</th>
+                <th>ID клиента</th>
+                <th>Номер телефона</th>
+                <th>Баланс</th>
+                <th>Номер ПК</th>
+                <th>Администратор</th>
+            <th></th>
+        </tr>
+            {% for el in knig_uchet %}
+                <p>
+                    <tr>
+                        <td>{{ el.ID_knig}}</td>
+                        <td>{{ el.Nomer_chek}}</td>
+                        <td>{{ el.Operac}}</td>
+                        <td>{{ el.Obsh_stoim}}</td>
+                        <td>{{ el.Data_operac}}</td>
+                        <td>{{ el.Klient_ID_Klient_id }}
+                        <td>{{ el.Klient_ID_Klient.Phone }}</td>
+                        <td>{{ el.Klient_ID_Klient.Balans }}</td>
+                        <td>{{ el.PC_ID_PC.Number }}</td>
+                        <td>{{ el.Admin_ID_admin.FIO }}</td>
+                    </tr>
+                </p>
+        {% endfor %}
+            {% else %}
+                <p>Пользователь не найден!</p>
+            {% endif %}
+        </table>
+    </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма редактирования компьютера{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Форма редактирования компьютера</h1>
+        <div class="form-PC">
+            <style>
+                input[type='number'] {
+                    -moz-appearance: textfield;
+                }
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+            </style>
+            <form method="Post" autocomplete="off">
+                {% csrf_token %}
+                {{ form.Number }}<br>
+                {{ form.Status }}<br>
+                {{ form.Stoim }}<br>
+                <span>{{ error }}</span>
+                <button class="btn btn-success" type="sumbit">Изменить компьютер</button>
+                <br><br>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

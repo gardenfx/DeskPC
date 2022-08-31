@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма редактирования администратора{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Редактировать администратора</h1>
+        <div class="form-admininfo">
+        <form method="Post">
+            {% csrf_token %}
+            {{ form.ID_Admin }}<br>
+            {{ form.FIO }}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Применить</button>
+            <button class="btn btn-danger" type="cancel">Отменить</button>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

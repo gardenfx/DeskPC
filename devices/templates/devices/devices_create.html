@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма добавления товара{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Установить бронь</h1>
+        <h5 align="left">Свободные компьютеры: {{ bron_check }}</h5>
+        <div class="form-devices">
+        <form method="Post">
+            {% csrf_token %}
+            {{ form.ID_Bron }}<br>
+            {{ form.Data_bron }}<br>
+            {{ form.Phone_bron }}<br>
+            {{ form.Name_bron }}<br>
+            Номер компьютера{{ form.PC_ID_PC }}<br>
+            {{ form.Komment}}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Забронирвоать</button>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

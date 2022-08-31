@@ -1,0 +1,19 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Добавление администратора{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Создать администратора</h1>
+        <div class="form-admininfo">
+        <form method="Post">
+            {% csrf_token %}
+            {{ form.ID_admin }}<br>
+            {{ form.FIO }}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Создать</button>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

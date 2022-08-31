@@ -1,0 +1,33 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма добавления товара{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Форма добавления товара</h1>
+        <div class="form-shop">
+            <style>
+                input[type='number'] {
+                    -moz-appearance: textfield;
+                }
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+            </style>
+            <form method="Post">
+                {% csrf_token %}
+                <span>{{ error }}</span><br>
+                {{ form.ID_tovar }}<br>
+                {{ form.Shtrih }}<br>
+                {{ form.Nazv_tovar }}<br>
+                Цена
+                {{ form.Cen_tovar }}<br>
+                Вид товара{{ form.Vid_Tovar_ID_Vid }}<br>
+                <button class="btn btn-success" type="submit">Добавить товар</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

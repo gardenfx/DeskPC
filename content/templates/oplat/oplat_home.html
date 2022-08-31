@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Список оплат{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Список оплат ПК</h1>
+        {% if oplat %}
+        <form method="get" style="text-align: right; padding-right: 80px; padding-bottom: 20px" action="{% url 'oplat_home' %}">
+            <input type="text" style="border-radius: 6px; border: 1px solid gray; text-align: left;" name="search_oplat" placeholder="Номер телефона">
+            <input type="submit" style="background: #4d963a; color: #f1f1f1; border-radius: 6px; border: 1px solid gray; height: 30px;" value="Поиск">
+        </form>
+            {% csrf_token %}
+            <div class="table_devices">
+        <table style='border: 0.1px solid black; box-shadow: 0px 0px 20px 5px rgba(2,2,2,0.2); margin: auto; width: 95%; height: 120%; font-size: 120%'>
+            <tr><th>ID оплаты</th>
+                <th>Дата оплаты</th>
+                <th>Сумма</th>
+                <th>ID клиента</th>
+                <th>Имя</th>
+                <th>Телефон</th>
+                <th>Баланс</th>
+            <th></th>
+        </tr>
+            {% for el in oplat %}
+                <p>
+                    <tr>
+                        <td>{{ el.ID_Oplat}}</td>
+                        <td>{{ el.Data_opl }}</td>
+                        <td>{{ el.Summ_opl }}</td>
+                        <td>{{ el.Klient_ID_Klient.ID_Klient }}</td>
+                        <td>{{ el.Klient_ID_Klient.Name }}</td>
+                        <td>{{ el.Klient_ID_Klient.Phone }}</td>
+                        <td>{{ el.Klient_ID_Klient.Balans }}</td>
+
+                    </tr>
+                </p>
+        {% endfor %}
+            {% else %}
+                <p>Пользователь не найден!</p>
+            {% endif %}
+        </table>
+    </div>
+    </div>
+
+
+{% endblock %}

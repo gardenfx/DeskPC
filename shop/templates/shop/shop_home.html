@@ -1,0 +1,45 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Товары{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Товары</h1>
+        <h2 class="btn-createshop" style="text-align: left"><a href="{% url 'create_shop' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить</button></a></h2>
+        {% if shop %}
+        <form method="get" style="text-align: right; padding-right: 80px; padding-bottom: 20px" action="{% url 'shop_home' %}">
+            <input type="text" style="border-radius: 6px; border: 1px solid gray; text-align: left;" name="search_shop" placeholder="Имя товара">
+            <input type="submit" style="background: #4d963a; color: #f1f1f1; border-radius: 6px; border: 1px solid gray; height: 30px;" value="Поиск">
+        </form>
+
+            {% csrf_token %}
+            <div class="table_shop" style="margin-top: -20px;">
+        <table style='border: 0.1px solid black; box-shadow: 0px 0px 20px 5px rgba(2,2,2,0.2); margin: auto; width: 90%; height: 120%; font-size: 120%'>
+            <tr><th></th>
+            <th>Вид товара</th>
+            <th>Штрих-код</th>
+            <th>Название товар</th>
+            <th>Цена товара</th>
+            <th></th>
+        </tr>
+            {% for el in shop %}
+                <p>
+                    <tr>
+                        <td><input type="checkbox" id="task.pk"></td>
+                        <td>{{ el.Vid_Tovar_ID_Vid.Vid_Tov }}</td>
+                        <td>{{ el.Shtrih }}</td>
+                        <td>{{ el.Nazv_tovar }}</td>
+                        <td>{{ el.Cen_tovar }}</td>
+                        <td><a href="{% url 'shop-update' el.ID_tovar%}" class="btn btn-warning">Ред.</a>
+                        <a href="{% url 'shop-delete' el.ID_tovar %}" class="btn btn-danger">Удалить</a></td></tr>
+                </p>
+        {% endfor %}
+            {% else %}
+                <p>У вас нет товаров!</p>
+            {% endif %}
+        </table>
+    </div>
+    </div>
+
+
+{% endblock %}

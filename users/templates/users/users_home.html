@@ -1,0 +1,48 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Пользователи{% endblock %}
+
+{% block content %}
+    <div class="feature">
+    {% csrf_token %}
+        <h1 align="center">Пользователи</h1>
+        <h2 class="btn-createuser" style="text-align: left"><a href="{% url 'create' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить</button></a></h2>
+        <div class = 'text-justify' align="left">
+            <h5>Всего: {{ users_count }}</h5>
+        </div>
+        {% if users %}
+            <form method="get" style="text-align: right; margin-top: -40px; padding-right: 80px; padding-bottom: -20px" action="{% url 'users_home' %}">
+                <input type="text" style="border-radius: 6px; border: 1px solid gray; text-align: left;" name="search_user" placeholder="Номер телефона">
+                <input type="submit" style="background: #4d963a; color: #f1f1f1; border-radius: 6px; border: 1px solid gray; height: 30px;" value="Поиск">
+            </form>
+             <div class="table_user">
+        <table style='border: 0.1px solid black; box-shadow: 0px 0px 20px 5px rgba(2,2,2,0.2); margin: auto; width: 90%; height: 80%; font-size: 110%;' >
+            <th>ID клиента</th>
+            <th>Номер телефона</th>
+            <th>Имя</th>
+            <th>Дата рождения</th>
+            <th>Скидка</th>
+            <th>Баланс</th>
+            <th></th>
+        </tr>
+        {% for el in users %}
+                <p>
+                    <tr><td>{{ el.ID_Klient}}</td>
+                    <td>+{{ el.Phone }}</td>
+                    <td>{{ el.Name }}</td>
+                    <td>{{ el.Data_rozjden }}</td>
+                    <td>{{ el.Skidka }}%</td>
+                        <td>{{ el.Balans }} руб.</td>
+                        <td><a href="{% url 'users-update' el.ID_Klient %}" class="btn btn-warning">Ред.</a>
+                        <a href="{% url 'users-delete' el.ID_Klient %}" class="btn btn-danger">Удалить</a></td></tr>
+                </p>
+        {% endfor %}
+            {% else %}
+                <p>У вас нет пользователей!</p>
+            {% endif %}
+        </table>
+    </div>
+    </div>
+
+
+{% endblock %}

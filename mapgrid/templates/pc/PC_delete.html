@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Удаление компьютера{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Удаление компьютер</h1>
+        <div class="form-PC">
+        <form method="Post">
+            {% csrf_token %}
+            <button class="btn btn-success" type="submit">Удалить компьютер</button><br><br>
+            <button class="btn btn-danger" type="cancel">Отменить</button>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

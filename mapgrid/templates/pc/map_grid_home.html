@@ -1,0 +1,44 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Компьютеры{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Компьютеры</h1>
+        <h2 class="btn-createuser" style="text-align: left"><a href="{% url 'addPC' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить</button></a></h2>
+        <div class = 'text-justify' align="left">
+            <h5>Всего: {{ PCcount }}</h5>
+            Свободно: {{ PCfilterCheckFree }}
+            Занято: {{ PCfilterCheckNofree }}
+            Забронировано: {{ PCfilterBron }}
+            В обслуживании: {{ PCfilterObsl }}
+        </div>
+        {% if PC %}
+            {% csrf_token %}
+            <div class="table_PC">
+        <table style='border: 0.1px solid black; box-shadow: 0px 0px 20px 5px rgba(2,2,2,0.2); margin: auto; width: 90%; height: 120%; font-size: 120%'>
+            <th>Номер компьютера</th>
+            <th>Статус</th>
+            <th>Стоимость</th>
+            <th></th>
+        {% for el in PC %}
+                <p>
+                    <tr>
+                        <td>{{ el.Number }}</td>
+                        <td>{{ el.Status }}</td>
+                        <td>{{ el.Stoim }}</td>
+                        <td><a href="{% url 'PC-update' el.ID_PC %}" class="btn btn-warning">Ред.</a>
+                        <a href="{% url 'PC-delete' el.ID_PC %}" class="btn btn-danger">Удалить</a></td>
+                 </tr>
+                </p>
+
+        {% endfor %}
+            {% else %}
+                <p>У вас нет компьютеров!</p>
+            {% endif %}
+        </table>
+    </div>
+    </div>
+
+
+{% endblock %}

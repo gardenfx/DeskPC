@@ -1,0 +1,25 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма редактирования товаров{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Редактирование бронирования</h1>
+        <div class="form-shop">
+        <form method="Post">
+            Нередактируемое поле*<br>
+            {% csrf_token %}
+            {{ form.ID_Bron }}<br>
+            {{ form.Data_bron }}<br>
+            {{ form.Phone_bron }}<br>
+            {{ form.Name_bron }}<br>
+            Номер компьютера*{{ form.PC_ID_PC }}<br>
+            {{ form.Komment}}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Применить</button>
+            <button class="btn btn-danger" type="cancel">Отменить</button>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

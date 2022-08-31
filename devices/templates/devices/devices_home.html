@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Бронирование{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Бронирование</h1>
+        <h2 class="btn-createshop" style="text-align: left"><a href="{% url 'create_bron' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Забронировать компьютер</button></a></h2>
+        {% if reserve %}
+            <h5 align="left">Свободные компьютеры: {{ bron_check }}</h5>
+        <form method="get" style="text-align: right; padding-right: 80px; padding-bottom: 20px" action="{% url 'bron_home' %}">
+            <input type="text" style="border-radius: 6px; border: 1px solid gray; text-align: left;" name="search_bron" placeholder="Имя">
+            <input type="submit" style="background: #4d963a; color: #f1f1f1; border-radius: 6px; border: 1px solid gray; height: 30px;" value="Поиск">
+        </form>
+            {% csrf_token %}
+            <div class="table_devices">
+        <table style='border: 0.1px solid black; box-shadow: 0px 0px 20px 5px rgba(2,2,2,0.2); margin: auto; width: 90%; height: 120%; font-size: 120%'>
+            <tr><th></th>
+                <th>Дата брони</th>
+                <th>Телефон</th>
+                <th>Имя</th>
+                <th>Номер ПК</th>
+                <th>Комментарий</th>
+            <th></th>
+        </tr>
+            {% for el in reserve %}
+                <p>
+                    <tr>
+                        <td><input type="checkbox" id="task.pk"></td>
+                        <td>{{ el.Data_bron}}</td>
+                        <td>{{ el.Phone_bron }}</td>
+                        <td>{{ el.Name_bron }}</td>
+                        <td>{{ el.PC_ID_PC }}</td>
+                        <td>{{ el.Komment }}</td>
+                        <td><a href="{% url 'bron-update' el.ID_Bron%}" class="btn btn-warning">Ред.</a>
+                        <a href="{% url 'bron-delete' el.ID_Bron %}" class="btn btn-danger">Удалить</a></td></tr>
+                </p>
+        {% endfor %}
+            {% else %}
+                <p>Все свободно! Компьютеры не забронированы</p>
+            {% endif %}
+        </table>
+    </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Касса{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <div class="feature">
+        <div class="cashdesk_main_wrapper overflow">
+            <div id="cart-popup" class="cashdesk_main_wrapper__shop__mini_cart_wrapper">
+                <div class="cashdesk_main_wrapper__shop__mini_cart_wrapper__header">
+                    <div id="handle_cart_button" style="cursor: pointer;">Корзина</div>
+                    <div class="mini_cart_value">
+                        <p class="p">Итого</p>
+                        <h2 class="h2" id="mini_cart_total_price">0 руб</h2>
+                    </div>
+                    <div class="buy_button" onClick="payAnyWay()" style="cursor: pointer">Оплатить</div>
+                </div>
+                <div id="mini_cart_wrapper" style="width: 100%"></div>
+            </div>
+            <div class="cashdesk_main_wrapper__shop">
+                <div class="cashdesk_main_wrapper__shop__tabs">
+                    <div id="add_money" class="cashdesk__tab_btn active_tab">Пополнение</div>
+                    <div id="get_menu" class="cashdesk__tab_btn">Магазин</div>
+                </div>
+                <div id="shop" class="cashdesk_main_wrapper__shop__container">
+                    <div class="cashdesk_main_wrapper__shop__search">
+                        <form method="get" action="{% url 'cashdesk' %}">
+                            <input name="search_cashdesk_shop" type="text" class="search_input"
+                                   placeholder="Найти товар"/>
+                            <button type="submit" class="search_submit">Поиск</button>
+                        </form>
+                    </div>
+                    {% for el in shop %}
+                        <div class="item_card">
+                            <h4 class="h4">{{ el.Nazv_tovar }}</h4>
+                            <p class="p">{{ el.Vid_Tovar_ID_Vid }}</p>
+                            <h2 class="h2">{{ el.Cen_tovar }} руб</h2>
+                            <div class="add_to_cart"
+                                 onClick="addToCart({id:'{{ el.ID_tovar }}', name: '{{ el.Nazv_tovar }}', price: '{{ el.Cen_tovar }}', count: 1})">
+                                Добавить
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div id="packages" class="cashdesk_main_wrapper__shop__container flex-center">
+                    <div class="add_money__input-wrapper">
+                        <form>
+                            <div class="create_money_payment_wrapper">
+                                <style>
+                                    input[type='number'] {
+                                        -moz-appearance: textfield;
+                                    }
+                                    input::-webkit-outer-spin-button,
+                                    input::-webkit-inner-spin-button {
+                                        -webkit-appearance: none;
+                                    }
+                                </style>
+                                <input id="value_input" class="add_money__input" placeholder="Сумма пополнения"
+                                       type="number" style=""/>
+                                <input id="phone_input" class="add_money__input_phone" placeholder="Номер телефона"
+                                       type="number"/>
+                                <div id="add_money_submit_button">Добавить в корзину</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="recipient">
+                        <div class="recipient-block">
+                            <h5 class="h5">Чек #</h5>
+                            <h1 class="h1" id="generate_chek"></h1>
+                        </div>
+                        <div class="recipient-block">
+                            <h5 class="h5">Сумма</h5>
+                            <h1 class="h1-price" id="check_item_total">0 руб</h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cashdesk_main_wrapper__cart">
+                <div class="Header_cashdesk_z">
+                    <div><a class="cashdesk__z_btn" href="{% url 'venue_pdf' %}">Z-отчет</a></div>
+                    <div class="text_summa">Выручка за день:</div>
+                    <div class="summa" id="summa_smen">{{ sum_infoprod }}</div>
+                </div>
+                <div class="item_lined__sale">
+                    <div class="row">Дата и время</div>
+                    <div class="row">Операция</div>
+                    <div class="row">Номер чека</div>
+                    <div class="row">Сумма</div>
+                </div>
+                {% for elem in infoprod %}
+                    <div class="item_lined__sale">
+                        <div class="row">{{ elem.Data_operac }}</div>
+                        <div class="row">{{ elem.Operac }}</div>
+                        <div class="row">{{ elem.Nomer_chek }}</div>
+                        <div class="row">{{ elem.Obsh_stoim }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

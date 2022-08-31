@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1042" height="1042" viewBox="0 0 1042 1042">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        font-size: 383.628px;
+        font-family: Montserrat;
+        font-weight: 800;
+        font-style: italic;
+        text-transform: uppercase;
+      }
+
+      .cls-1 {
+        fill: red;
+        text-anchor: middle;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <text id="D" class="cls-1" transform="translate(538.906 935.017) scale(2.882)"><tspan x="0">D</tspan></text>
+  <text id="ESKPC" class="cls-2" transform="translate(291.343 862.654) rotate(-78.583) scale(0.453)">ESKPC</text>
+</svg>

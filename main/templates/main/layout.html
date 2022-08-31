@@ -1,0 +1,50 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <link rel="shortcut icon" href="/static/main/img/logo.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src="https://kit.fontawesome.com/ccdb1ce563.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+</head>
+<body>
+    <header>
+        <span class="exit_logout">
+        <a href="{% url 'auth' %}"><button class="btn btn-danger"> Выход </button></a>
+        </span>
+        <div id="time"></div>
+        <div id="newHours"></div>
+        <script src="/static/main/js/TimeCheck.js"></script>
+    </header>
+    <aside id="aside_menu">
+        <ul class="aside_menu--buttons_wrapper">
+            <div id="aside_logo">
+                <a href="{% url 'home' %}"><img src="{% static 'main/img/logo.svg' %}" alt="Лого"></a>
+                <br><span class="logo">DeskPC</span>
+            </div>
+            <br><a href="{% url 'home' %}"><li><i class="fas fa-home"></i> Главная</li></a></br>
+            <br><a href="{% url 'map_grid' %}"><li><i class="fas fa-address-card"></i> Карта клуба</li></a></br>
+            <br><a href="{% url 'cashdesk' %}"><li><i class="fa-solid fa-cash-register"></i> Кассовый аппарат </li></a></br>
+            <br><a href="{% url 'shop' %}"><li><i class="fa-solid fa-shop"></i> Магазин</li></a></br>
+            <br><a href="{% url 'devices' %}"><li><i class="fa-solid fa-desktop"></i> Резерв устройств</li></a></br>
+            <br><a href="{% url 'users_home' %}"><li><i class="fa-solid fa-user"></i> Пользователи</li></a></br>
+            <br><a href="{% url 'admenu' %}"><li><i class="fa-solid fa-rectangle-ad"></i> Администраторы</li></a></br>
+        </ul>
+        <div id="close_side_menu" class="close_btn">X</div>
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <span class="copyright">
+        ©Copyright 2022 Garshin D. V.
+    </span>
+    <script src="/static/main/js/app.js"></script>
+</body>
+</html>

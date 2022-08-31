@@ -1,0 +1,34 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма редактирования товаров{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Форма редактирования товаров</h1>
+        <div class="form-shop">
+            <style>
+                input[type='number'] {
+                    -moz-appearance: textfield;
+                }
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+            </style>
+            <form method="Post">
+                {% csrf_token %}
+                {{ form.ID_tovar }}<br>
+                {{ form.Vid_Tov }}
+                Штрих-код{{ form.Shtrih }}<br>
+                Название{{ form.Nazv_tovar }}<br>
+                Цена{{ form.Cen_tovar }}<br>
+                Вид{{ form.Vid_Tovar_ID_Vid }}<br>
+                <span>{{ error }}</span>
+                <button class="btn btn-success" type="submit">Применить</button>
+                <button class="btn btn-danger" type="cancel">Отменить</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

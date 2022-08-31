@@ -1,0 +1,32 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Администрация{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1 align="center">Администрация</h1>
+        <h2 class="btn-createadmininfo" style="text-align: left"><a href="{% url 'create_admininfo' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить</button></a></h2>
+        {% if admininfo %}
+            {% csrf_token %}
+            <div class="table_shop">
+        <table style='border: 0.1px solid black; box-shadow: 0px 0px 20px 5px rgba(2,2,2,0.2); margin: auto; width: 50%; height: 80%; font-size: 120%'>
+            <tr>
+            <th>Фамилия и имя</th>
+            <th></th>
+        </tr>
+            {% for el in admininfo %}
+                <p>
+                    <tr>
+                        <td>{{ el.FIO}}</td>
+                        <td><a href="{% url 'admininfo-update' el.ID_admin%}" class="btn btn-warning">Ред.</a></tr>
+                </p>
+        {% endfor %}
+            {% else %}
+                <p>Нет ни одного администратора</p>
+            {% endif %}
+        </table>
+    </div>
+    </div>
+
+
+{% endblock %}
